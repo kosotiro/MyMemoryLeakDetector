@@ -44,13 +44,14 @@ list *get_struct_db_lst(void);
 int /*return 0 on success, -1 on failure for some reason*/
 add_structure_to_struct_db(struct_db_t *struct_db, struct_db_rec_t *struct_rec);
 
-#define REG_STRUCT(struct_db_list, struct_db_node, st_name, fields_arr)           \
-        do {                                                                      \
-	     struct_db_rec *rec = (struct_db_rec *)malloc(sizeof(struct_db_rec)); \
-	     rec->ds_size = sizeof(st_name);                                      \
-	     strncpy(rec->struct_name, #st_name, MAX_NAME);                       \
-	     rec->n_fields = sizeof(fields_arr)/sizeof(field_info_t);             \
-	     rec->fields = fields_arr;                                            \
-	     if (!hash_table_insert(list *struct_db_list, node *struct_db_rec, void *data/*char *struct_name, field_info_t *fields*/)
-
+#define REG_STRUCT(struct_db_list, struct_db_node, st_name, fields_arr)             \
+        do {                                                                        \
+	     struct_db_rec *rec = (struct_db_rec *)malloc(sizeof(struct_db_rec));   \
+	     rec->ds_size = sizeof(st_name);                                        \
+	     strncpy(rec->struct_name, #st_name, MAX_NAME);                         \
+	     rec->n_fields = sizeof(fields_arr)/sizeof(field_info_t);               \
+	     rec->fields = fields_arr;                                              \
+	     if (!hash_table_insert(struct_db_list, struct_db_node, rec, #st_name)) \
+	       assert(0);                                                           \
+	   } while (0);
 #endif

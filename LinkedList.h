@@ -19,7 +19,8 @@ typedef struct _list {
   int count;
 } list;
 
-bool list_add_node(list *lst, void *data);
+bool list_add_node(list *lst, void *data, DB_REC db_rec, node *list_node);
+void print_list(list *lst);
 void list_remove_node(list *lst, void *key);
 node *list_node_lookup_by_name(list *lst, char *name);
 node *list_node_lookup_by_ptr(list *lst, void *ptr);

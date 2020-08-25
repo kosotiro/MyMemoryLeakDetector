@@ -1,6 +1,6 @@
 #include "LinkedList.h"
 
-bool list_add_node(list *lst, void *data, DB_REC db_rec)
+bool list_add_node(list *lst, void *data, DB_REC db_rec, node *list_node)
 {
   node *cur_node = NULL;
   
@@ -28,7 +28,22 @@ bool list_add_node(list *lst, void *data, DB_REC db_rec)
     lst->count++;
   }
   
+  *list_node = *new_node;
+  
   return true;
+}
+
+void print_list(list *lst)
+{
+  node *cur_node;
+  
+  if (!lst)
+    return;
+ 
+  while ((cur_node = lst->head) != NULL) {
+    
+  }
+    
 }
 
 node *list_node_lookup_by_name(list *lst, char *name)
