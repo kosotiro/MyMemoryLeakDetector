@@ -22,6 +22,11 @@ static unsigned int hash(char *name)
   return hash_value % TABLE_SIZE;
 }
 
+unsigned int hash_table_default_size_get(void)
+{
+  return TABLE_SIZE;
+}
+
 void hash_table_init(list *hash_table[TABLE_SIZE])
 {
   for (int i = 0; i < TABLE_SIZE; i++)
@@ -39,7 +44,7 @@ void print_table(list *hash_table[TABLE_SIZE])
 #endif
 }
 
-bool hash_table_insert(list *struct_db, node *struct_db_rec, void *data/*char *struct_name, field_info_t *fields*/)
+bool hash_table_insert(list *struct_db_list, node *struct_db_node, void *data/*char *struct_name, field_info_t *fields*/)
 {
   node *cur_node = NULL;
   bool found = false;
@@ -63,7 +68,7 @@ bool hash_table_insert(list *struct_db, node *struct_db_rec, void *data/*char *s
   if (!found)
     return false;
   
-  hash_key = hash (struct_name); 
+  hash_key = hash (data->struct_name); 
   
   return list_add_node(cur_node->hash_table[hash_key], data);
 }
