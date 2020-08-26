@@ -1,5 +1,4 @@
 #include "HashTable.h"
-#include "css.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -32,6 +31,7 @@ void hash_table_init(list **hash_table[TABLE_SIZE])
     *hash_table[i] = NULL;
 }
 
+#if 0
 void print_table(list *hash_table[TABLE_SIZE])
 {
   for (int i = 0; i < TABLE_SIZE; i++) {
@@ -47,8 +47,8 @@ void print_table(list *hash_table[TABLE_SIZE])
       }
     }
 #endif
-
 }
+#endif
 
 bool hash_table_insert(list *struct_db_list, node *struct_db_node, void *data, char *struct_name)
 {
